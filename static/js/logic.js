@@ -1,5 +1,3 @@
-//function createFeatures(neighborhoods) {
-
 var myMap = L.map("map", {
   center: [
     39.7392, -104.9903
@@ -17,7 +15,8 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 //create a variable for the geojson file
 var neighborhoodShapes = "static/data/Denver_Statistical_Neighborhoods.geojson";
 //read the data with d3
-d3.json(neighborhoodShapes, function (data) {
+d3.json(neighborhoodShapes, function(data) {
+
   //add the data to a geoJSON layer on the map
   var denNeighborhoods = L.geoJSON(data, {
     //add labels to neighborhoods
@@ -31,24 +30,19 @@ d3.json(neighborhoodShapes, function (data) {
 var tree_data = ('static/data/tree_inventory.csv')
 d3.csv(tree_data, function (trees) {
   //console.log(trees)
-
   for (var i = 0; i < trees.length; i++) {
     latLong = []
     var lat = trees[i].Y_LAT
     var long = trees[i].X_LONG
     latLong.push(lat, long)
 
-    //console.log(latLong)
 
-    // creating circles for each tree     
-   var circle = L.circle (latLong, {
-
-      fillOpacity: 0.75,
-      color: "brown",
-      fillColor: "brown",
-      radius: 5
-
-    }).addTo(myMap);
+var circle = L.circle(latLong, {
+  fillOpacity: 0.75,
+  color: "brown",
+  fillColor: "brown",
+  radius: 5
+}).addTo(myMap);
 
   }
 });
