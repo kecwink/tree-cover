@@ -1,0 +1,36 @@
+/* font size dependent on radius, see app.js */
+.stateText {
+    font-family: sans-serif;
+    fill:black;
+    text-anchor: middle;
+  }
+  
+  .neighborhood {
+    fill: slategray;
+    stroke: slategrey;
+  }
+  
+  .chart {
+    display: block;
+    margin: 0;
+  }
+  
+  .d3.tip {
+    position: absolute;
+    font: 12px sans-serif;
+    padding: 6px;
+    font-size: 12px;
+    line-height: 1;
+    line-height: 1.5em;
+    color: #fff;
+    text-align: center;
+    text-transform: capitalize;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+  }
+  
+  .axisText{
+    font-weight: bold;
+    font-family: sans-serif;
+    text-anchor: middle;
+  }
