@@ -48,7 +48,7 @@ function makeResponsive() {
 
 
     // read the csv file 
-    d3.csv('static/data/tree_data2.csv').then(function (treeData) {
+    d3.csv('static/data/tree_data.csv').then(function (treeData) {
         //var dataCategories = []
 
         //format data to make a lacks healthcare(%) vs in poverty (%)
@@ -140,9 +140,10 @@ function makeResponsive() {
             .attr("x", 0 + margin.right - 60)
             .attr("class", "axisText")
             .text("Number of Trees");
-    }).catch(function (error) {
-        console.log(error);
-     });
+     })
+    //.catch(function (error) {
+    //     console.log(error);
+    //  });
 
 
 }

@@ -1,24 +1,4 @@
-/* .navbar{
-  margin-top: 15px;
-  margin-bottom: 15px;
-  font-size: 30px;  
-  text-align: center;
-  background-color: rgb(95, 68, 112); */
 
-/* .dropdown {
-    position: relative;
-    display: inline-block;
-} */
-/* Dropdown Content (Hidden by Default) */
-/* .dropdown-list {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-} */ 
-/* remove default margin and padding from body */
 body {
   padding: 10;
   margin: 0;
@@ -31,19 +11,40 @@ html {
   height: 100%;
 }
 
-/* #barchart,
-body,
-html {
-  height: 100%;
-}
-.bar.trees {
-  fill: rgb(37, 189, 37);
+
+/* font size dependent on radius, see app.js */
+.stateText {
+  font-family: sans-serif;
+  fill:black;
+  text-anchor: middle;
 }
 
-.bar:hover {
-  fill: red;
+.neighborhood {
+  fill: slategray;
+  stroke: slategrey;
 }
 
-.bar.rent {
-  fill: rgb(89, 27, 126);
-} */
+.chart {
+  display: block;
+  margin: 0;
+}
+
+.d3.tip {
+  position: absolute;
+  font: 12px sans-serif;
+  padding: 6px;
+  font-size: 12px;
+  line-height: 1;
+  line-height: 1.5em;
+  color: #fff;
+  text-align: center;
+  text-transform: capitalize;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+
+.axisText{
+  font-weight: bold;
+  font-family: sans-serif;
+  text-anchor: middle;
+}
