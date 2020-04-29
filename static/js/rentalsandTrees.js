@@ -129,9 +129,7 @@ function makeResponsive() {
             .attr("x", 0 + margin.right - 60)
             .attr("class", "axisText")
             .text("Number of Trees");
-    }).catch(function (error) {
-        console.log(error);
-     });
+    })
 
 
 }
