@@ -9,10 +9,13 @@ function makeResponsive() {
         svgArea.remove();
     }
 
-    
-    var svgWidth = document.getElementById('chart').clientWidth;
-    var svgHeight = 800;
-    
+    // SVG wrapper dimensions are determined by the current width and
+    // height of the browser window.
+    var svgWidth= 800;
+    //var svgWidth = document.getElementById('chart').clientWidth;
+    var svgHeight = 700;
+    //console.log(svgWidth)
+    //console.log(svgHeight)
 
     var margin = {
         top: 20,
@@ -20,7 +23,13 @@ function makeResponsive() {
         bottom: 60,
         left: 60
     };
-    
+    // var margin = {
+    //   top: 50,
+    //   bottom: 50,
+    //   right: 50,
+    //   left: 50
+    // };
+
     var height = svgHeight - margin.top - margin.bottom;
     var width = svgWidth - margin.left - margin.right;
 
@@ -37,15 +46,16 @@ function makeResponsive() {
 
 
     // read the csv file 
-    d3.csv('static/data/tree_data.csv').then(function (treeData) {     
+    d3.csv('static/data/tree_data2.csv').then(function (treeData) {
+        //var dataCategories = []
 
-        
+        //format data to make a lacks healthcare(%) vs in poverty (%)
         treeData.forEach(function (data) {
             data.perRented = +data.perRented;
-            data.trees = +data.trees;           
+            data.trees = +data.trees;
+            //dataCategories.push(data.neighborhood)
             
         });
-
         //console.log(treeData)
         //create scales
         var xLinearScale = d3.scaleLinear()
@@ -79,25 +89,27 @@ function makeResponsive() {
             .attr("r", "20")
             .attr("class", "neighborhood")
             .attr("stroke", "blue");
-       
 
-          //  Initialize Tooltip
+
+        
+
+          // Step 1: Initialize Tooltip
           var toolTip = d3.tip()
-            
+            //tip() is a function that does select body and append div
             .attr("class", "d3.tip")
-            
+            //.offset([80, -60])//doesn't do anything
             .html(function (d) {
-                return (`<strong>Neighborhood: ${d.neighborhood}<hr>Quantity of trees: ${d.trees}<hr> % of Units Rented: ${d.perRented}</strong>`);
+                return (`<strong>Neighborhood: ${d.neighborhood}<hr>Number of trees: ${d.trees}<hr> % of Units Rented: ${d.perRented}</strong>`);
             });
 
-          // Create the tooltip in chartGroup.
+          // Step 2: Create the tooltip in chartGroup.
           chartGroup.call(toolTip);
 
-          // Create "mouseover" event listener to display tooltip
+          // Step 3: Create "mouseover" event listener to display tooltip
           circlesGroup.on("mouseover", function(d) {
             toolTip.show(d, this);
           })
-            // Create "mouseout" event listener to hide tooltip
+            // Step 4: Create "mouseout" event listener to hide tooltip
             .on("mouseout", function(d) {
               toolTip.hide(d);
             });
@@ -108,15 +120,19 @@ function makeResponsive() {
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("class", "axisText")
-            .text("% of Units Rented in a Neighborhood");
+            .text("% of Units Rented");
 
-        chartGroup.append("text")            
-            .attr("y", 0 - margin.bottom - 10)
+        chartGroup.append("text")
+            .attr("transform", `translate(${width}, ${height - margin.bottom +10})`)
+            .attr("transform", `translate(${width / 2}, ${height + margin.top +10})`)
+            .attr("y", 0 - margin.bottom + 65)
             .attr("x", 0 + margin.right - 60)
             .attr("class", "axisText")
             .text("Number of Trees");
-     })
-    
+    }).catch(function (error) {
+        console.log(error);
+     });
+
 
 }
 // When the browser loads, makeResponsive() is called.
