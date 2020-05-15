@@ -5,23 +5,26 @@ var n_names = []
 
 d3.csv('static/data/demographics.csv').then((data) => {    
     allData = data;
+    
 
     for (var i = 0; i < allData.length; i++) {
         var names = Object.values(allData[i])
-        var name1 = names[1]
+        var name1 = names[1]        
         n_names.push(name1)
     }
     
     init()
-});
+    
 
+});
+//console.log(allData)
 function init() {
     var dropDown = d3.select('#dropDown');
     n_names.forEach(function (names) {
         dropDown.append('option').text(names).property('value', names);
     });
 
-    getPlot(allData[0].Neighborhood)
+    getPlot(allData[0].Neighborhood) 
     
 }
 function getPlot(neighborhood) {
@@ -34,7 +37,7 @@ function getPlot(neighborhood) {
 
     //find the sampledata that matches the sample
     var data = allData.filter(obj => obj.Neighborhood == neighborhood)[0]
-    
+    console.log(data)
 
     //isolate the values
     var demos = Object.values(data)
@@ -62,6 +65,7 @@ function getPlot(neighborhood) {
     //scale the x-axis
     var axisTemplate = {        
         title: "Neighborhood Demographics"
+
     };
     // Define the plot layout
     var layout = {
@@ -69,4 +73,9 @@ function getPlot(neighborhood) {
     };
 
     Plotly.newPlot("indDemo", graphData, layout);
+}
+function onChange(neighborhood) {
+    
+    getPlot(neighborhood)
+    
 }
