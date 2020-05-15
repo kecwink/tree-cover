@@ -25,91 +25,93 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
+
 <body>
-  <div>
+
+  <div class='container'>
+
     <nav class="jumbotron">
       <h3>Number of Trees Within the County of Denver</h3>
     </nav>
-  </div>
+
+
+  <div class='row'>
+    <div class='col-lg-12' id="introparagraph">
+      <p>Numerous studies have shown that nature is important to the well-being of humans, and trees are especially
+        beneficial. However, it’s unlikely that all neighborhoods are equally arboreal. These visualizations look at
+        how different neighborhoods in Denver County break down by tree cover and demographics.</p>
+    </div>
+  </div>  
+
   <div class='row'>
     <div class='col-lg-12'>
       <div id="text"></div>
-      <h4>Trees Within Each Denver Neighborhood</h4>
       <h4>Select A Neighborhood For Detailed Information</h4>
-    </div> 
+    </div>
   </div>
-  <div class='container'>
+
+    <!-- creates dropdown menu to select a neighborhood to analyze demographics -->
     <div class='row'>
-      <div class='col-lg-12' id="introparagraph">
-        <p>Numerous studies have shown that nature is important to the well-being of humans, and trees are especially beneficial. However, it’s unlikely that all neighborhoods are equally arboreal. These visualizations look at how different neighborhoods in Denver County break down by tree cover and demographics.</p>
+      <div class='col-lg-12'>
+        <select id="dropDown" onchange='onChange(this.value)'></select>
       </div>
-      
-      <!-- put headline in its own row -->
+    </div>
 
+      <!--connects to neighborhoods.js and loads bar chart of demographics-->
+      <div class="row">
+        <div class='col-lg-12'>
+          <div id='indDemo' onload='getPlot()'></div>          
+        </div>
+      </div>
+    
+      <!--connects to rentalsandTrees.js and creates bubble chart -->
+    <div class='row'>      
+      <div class='col-lg-12' id='chart'></div>
     </div>
 
 
 
-    
-    <div class='container'>
-
-      
-
-
-      <div class='row'>
-        <div class='col-lg-12'>
-          <select id="dropDown" onchange='onChange(this.value)'></select>
-        </div> 
-        <!--connects to neighborhoods.js-->       
-        <div class='col-lg-12'>
-          <div id='indDemo' onload='getPlot()'></div>
-          <!--<div id="my_viz"></div> connects to stackedDemographics2.js -->
-        </div>
+    <!-- loads leaflet map that shows the location of trees within the county of denver -->
+    <div class='row'>
+      <div class='col-lg-12'>
+        <h4>Trees Within Each Denver Neighborhood</h4>
+        <iframe src="map.html" width="650" height="400" style="border:1px solid black;"></iframe>
       </div>
-
-      <div class='row'>
-        <!--connects to rentalsandTrees.js -->
-        <div class='col-lg-10' id='chart'>
-        </div>        
-      </div>
-
-      
-
-      <div class='row'>
-        <div class='col-lg-12' id="endparagraph">
-          <p>As these charts show, areas that have higher percentages of rented units have fewer number of trees. The areas that are largely owned have higher numbers of trees, allowing those residents more access to nature. To improve the well being of other residents, the government should plant trees in neighborhoods with few trees. </p>
-        </div>
-        <div class='row'>
-          <div class='col-lg-12' id="map">          
-          </div> 
-        </div>
-
     </div>
 
 
+    <div class='row'>
+      <div class='col-lg-12' id="endparagraph">
+        <p>As these charts show, areas that have higher percentages of rented units have fewer number of trees. The
+          areas that are largely owned have higher numbers of trees, allowing those residents more access to nature.
+          To improve the well being of other residents, the government should plant trees in neighborhoods with few
+          trees. </p>
+      </div>
+    </div>
+
+
+  </div>
 
 
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
     
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"></script>
-      <script src="static/js/rentalsandTrees.js"></script>
-    <script src="static/js/neighborhoods.js"></script>   
-
-    <script type="text/javascript" src="config.js"></script>
-    <!-- Our JS -->
-    <script type="text/javascript" src="static/js/logic.js"></script>
+  <script src="static/js/rentalsandTrees.js"></script>
+  <script src="static/js/neighborhoods.js"></script>
+  <script type="text/javascript" src="config.js"></script>  
+  <script type="text/javascript" src="static/js/logic.js"></script>
+  
 </body>
 
 </html>
