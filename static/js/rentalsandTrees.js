@@ -1,10 +1,9 @@
 function makeResponsive() {
 
-    // if the SVG area isn't empty when the browser loads,
-    // remove it and replace it with a resized version of the chart
+    
     var svgArea = d3.select("#chart").select("svg");
 
-    // clear svg is not empty
+    
     if (!svgArea.empty()) {
         svgArea.remove();
     }
@@ -24,20 +23,20 @@ function makeResponsive() {
     var height = svgHeight - margin.top - margin.bottom;
     var width = svgWidth - margin.left - margin.right;
 
-    // Append SVG element
+    
     var svg = d3
         .select("#chart")
         .append("svg")
         .attr("height", svgHeight)
         .attr("width", svgWidth);
 
-    // Append group element
+    
     var chartGroup = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 
-    // read the csv file 
-    d3.csv('static/data/tree_data.csv').then(function (treeData) {     
+     
+    d3.csv('static/data/tree_data.csv').then(function (treeData) {    
 
         
         treeData.forEach(function (data) {
@@ -46,8 +45,8 @@ function makeResponsive() {
             
         });
 
-        //console.log(treeData)
-        //create scales
+        
+        
         var xLinearScale = d3.scaleLinear()
             .domain([d3.min(treeData, d => d.trees), d3.max(treeData, d => d.trees)])     
             .range([0, width]);
@@ -55,11 +54,11 @@ function makeResponsive() {
             .domain([0, d3.max(treeData, d => d.perRented)])
             .range([height, 0]);
 
-        //create axes
+        
         var xAxis = d3.axisBottom().scale(xLinearScale)
         var yAxis = d3.axisLeft().scale(yLinearScale)
 
-        //append axes
+        
         chartGroup.append('g')
             .attr("transform", `translate(0, ${height})`)
             .attr("class", "chart")
@@ -69,7 +68,7 @@ function makeResponsive() {
             .call(yAxis)
             .attr("class", "chart");
 
-        //circle generator
+        
         var circlesGroup = chartGroup.selectAll("circle")
             .data(treeData)
             .enter()
@@ -81,7 +80,7 @@ function makeResponsive() {
             .attr("stroke", "blue");
        
 
-          //  Initialize Tooltip
+          
           var toolTip = d3.tip()
             
             .attr("class", "d3.tip")
@@ -90,18 +89,19 @@ function makeResponsive() {
                 return (`<strong>Neighborhood: ${d.neighborhood}<hr>Quantity of trees: ${d.trees}<hr> % of Units Rented: ${d.perRented}</strong>`);
             });
 
-          // Create the tooltip in chartGroup.
+          
           chartGroup.call(toolTip);
 
-          // Create "mouseover" event listener to display tooltip
+          
           circlesGroup.on("mouseover", function(d) {
             toolTip.show(d, this);
           })
-            // Create "mouseout" event listener to hide tooltip
+            
             .on("mouseout", function(d) {
               toolTip.hide(d);
             });
-        // Create axes labels
+        
+        
         chartGroup.append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", 0 - margin.left + 10)
@@ -119,10 +119,10 @@ function makeResponsive() {
     
 
 }
-// When the browser loads, makeResponsive() is called.
+
 makeResponsive();
 
-// When the browser window is resized, makeResponsive() is called.
+
 d3.select(window).on("resize", makeResponsive);
 
 
