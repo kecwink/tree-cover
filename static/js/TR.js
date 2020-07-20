@@ -1,6 +1,4 @@
-function makeResponsive() {
-
-    
+   
     var svgArea = d3.select("#chart").select("svg");
 
     
@@ -117,13 +115,6 @@ function makeResponsive() {
             .text("Number of Trees");
      })
     
-
-}
-
-makeResponsive();
-
-
-d3.select(window).on("resize", makeResponsive);
 
 
 
