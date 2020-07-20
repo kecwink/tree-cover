@@ -1,5 +1,4 @@
-/* font size dependent on radius, see app.js */
-.stateText {
+.neighborhoodText {
     font-family: sans-serif;
     fill:black;
     text-anchor: middle;
