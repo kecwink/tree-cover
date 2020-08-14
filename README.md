@@ -1,1 +1,1 @@
-# tree_cover
+An in-depth analysis of how different Denver neighborhoods have different access to nature. The dashboard illustrates the varying demographics of each neighborhood, the percentage of units rented, and the number of trees within each neighborhood. 
